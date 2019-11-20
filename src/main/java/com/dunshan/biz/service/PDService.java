@@ -2,8 +2,10 @@ package com.dunshan.biz.service;
 
 import com.dunshan.biz.mapper.UserMapper;
 import com.dunshan.biz.model.User;
+import com.dunshan.common.log.LoggerFactory;
 import java.util.List;
 import javax.annotation.Resource;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -14,6 +16,8 @@ import org.springframework.util.StringUtils;
 @Service
 public class PDService {
 
+  private static final Logger logger = LoggerFactory.getLogger(PDService.class);
+
   @Resource
   private UserMapper mapper;
 
@@ -22,6 +26,7 @@ public class PDService {
   }
 
   public User getById(String id) {
+    logger.info(id);
     return mapper.selectByPrimaryKey(id);
   }
 
