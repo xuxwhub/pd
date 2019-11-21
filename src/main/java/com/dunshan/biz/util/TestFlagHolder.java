@@ -16,6 +16,13 @@ public class TestFlagHolder {
     return TEST_FLAG.get();
   }
 
+  public static String get4log() {
+    if (TEST_FLAG.get() == null) {
+      return "-";
+    }
+    return TEST_FLAG.get();
+  }
+
   public static void remove() {
     TEST_FLAG.remove();
   }

@@ -142,7 +142,7 @@ public abstract class AbstractLogAspect<T> implements ApplicationContextAware {
   private void afterLog(final ProceedingJoinPoint pjp, T annotation, ExecutionStatus status) {
     Logger logger = org.slf4j.LoggerFactory.getLogger(pjp.getTarget().getClass());
     Object[] args = new Object[]{pjp.getTarget().getClass().getName(), pjp.getSignature().getName(),
-        TestFlagHolder.get(),
+        TestFlagHolder.get4log(),
         status.getSuccess(), status.getCode(), status.getCost(),
         getCustomMessage(pjp, annotation, status)};
     if (status.isSuccessful()) {

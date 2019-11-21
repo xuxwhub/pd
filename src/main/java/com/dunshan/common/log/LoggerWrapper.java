@@ -1,8 +1,8 @@
 package com.dunshan.common.log;
 
+import com.dunshan.biz.util.TestFlagHolder;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.Marker;
@@ -17,6 +17,11 @@ public class LoggerWrapper implements Logger {
   private final Logger logger;
 
   private static final String FORMAT = "^|-^|-^|-^|-^|";
+
+  private static final String FORMAT1 = "^|-^|";
+
+  private static final String FORMAT2 = "^|-^|-^|-^|";
+
 
   private static final Pattern patternMobile = Pattern.compile("1[3|4|5|7|8|9]{1}[0-9]{9}");
 
@@ -355,10 +360,10 @@ public class LoggerWrapper implements Logger {
       StackTraceElement element = temp[3];
       return desensitization(
           new StringBuilder(element.getClassName()).append(".").append(element.getMethodName())
-              .append(FORMAT)
+              .append(FORMAT1).append(TestFlagHolder.get4log()).append(FORMAT2)
               .append(msg).toString());
     } catch (NullPointerException e) {
-      return new StringBuilder("-").append(FORMAT).append(msg).toString();
+      return new StringBuilder("-").append(FORMAT1).append(TestFlagHolder.get4log()).append(FORMAT2).append(msg).toString();
     }
   }
 
