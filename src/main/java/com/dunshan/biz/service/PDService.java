@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import tk.mybatis.mapper.entity.Example;
 
 /**
  * @author xuxinwei
@@ -26,8 +27,9 @@ public class PDService {
   }
 
   public User getById(String id) {
-    logger.info(id);
-    return mapper.selectByPrimaryKey(id);
+    User u = new User();
+    u.setId(id);
+    return mapper.selectOne(u);
   }
 
   public Boolean add(User user) {
@@ -35,7 +37,9 @@ public class PDService {
   }
 
   public Boolean deleteById(String id) {
-    return mapper.deleteByPrimaryKey(id) > 0;
+    User u = new User();
+    u.setId(id);
+    return mapper.delete(u) > 0;
   }
 
   public Boolean update(User user) {
@@ -47,3 +51,4 @@ public class PDService {
 
 
 }
+

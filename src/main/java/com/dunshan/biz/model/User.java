@@ -1,14 +1,17 @@
 package com.dunshan.biz.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import tk.mybatis.mapper.entity.IDynamicTableName;
 
 @Table(name = "t_user")
-public class User {
+public class User extends DynamicTableEntity implements Serializable {
     /**
      * 主键
      */
@@ -175,4 +178,5 @@ public class User {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
 }
